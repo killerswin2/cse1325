@@ -4,9 +4,8 @@ int gcd(int temp1, int temp2){
     if(temp2 == 0){
         return temp1;
     }else{
-        gcd(temp2, temp1 % temp2);
+        return gcd(temp2, temp1 % temp2);
     }
-    return 1;
 }
 
 
@@ -15,7 +14,12 @@ void Fraction::reduce(){
         this->_denominator = -this->_denominator;
         this->_numerator = -this->_numerator;
     }
-   int common = gcd(this->_denominator, this->_numerator);
+    int common;
+    if(this->_numerator <0){
+    	common = gcd(this->_denominator, -(this->_numerator));
+    }else{
+   		common = gcd(this->_denominator, this->_numerator);
+   }
    this->_denominator = this->_denominator / common;
    this->_numerator = this->_numerator / common;
 }
@@ -25,9 +29,17 @@ Fraction::Fraction(int numerator, int denominator): _numerator{numerator}, _deno
         if (denominator == 0){
             throw std::runtime_error{"Denominator is Zero"};
         }
+        Fraction::reduce();
 }
 
-//Fraction Fraction::operator-();
+Fraction Fraction::operator-(){
+	Fraction temp;
+	  temp._numerator = -this->_numerator;
+	  temp._denominator = this->_denominator;
+	return temp;
+
+}
+
 
 /*
 This operator will add both fractions
@@ -105,8 +117,10 @@ std::istream& operator>>(std::istream& ist, Fraction& m){
     if(postion == -1 ){
         std::runtime_error{"Read a bad Fraction"};
     }
-    m._numerator = std::stoi(temp.substr(postion-1,1));
-    m._denominator = std::stoi(temp.substr(postion+1,1));
+    
+    m._numerator = std::stoi(temp.substr(0,postion));
+    m._denominator = std::stoi(temp.substr(postion+1));
+    m.reduce();
     return ist;
 
 }
