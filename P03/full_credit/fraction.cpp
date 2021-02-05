@@ -130,9 +130,9 @@ and return 1 if both are not equal and 0 if they are both equal.
 operator uses a if statement to make comparison 
 */
 bool operator!=(const Fraction& lhs, const Fraction& rhs){
-    if(lhs._numerator != rhs._numerator || lhs._denominator != rhs._numerator){
-        return 1;
-    }else{
+    if(lhs._numerator == rhs._numerator && lhs._denominator == rhs._denominator){
         return 0;
+    }else{
+        return 1;
     }
 }
