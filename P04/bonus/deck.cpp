@@ -41,14 +41,16 @@ std::vector<std::string> Deck::options(){
 	and return _cards
 */
 Card* Deck::deal(){
-	if(_next_card == 1){
+	static int temp  = _cards.size();
+
+	if(temp - _next_card  ==  1){
 		return (_cards[0]);
 	}
 	else if(_next_card == 0){
 		throw std::runtime_error{"No Cards Created"};
 	}
 	else{
-		--_next_card;
-		return (_cards[_next_card]);
+		--temp;
+		return (_cards[temp]);
 	}
 }
