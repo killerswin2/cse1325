@@ -37,6 +37,6 @@ std::string Student::full_info(){
             parent_names +=  _parents[i]->to_string() + ", "; 
         }
     }
-    line =  _name + " (" + _email  + ") grade: " + std::to_string(_grade) + " students: " + parent_names;
+    line =  _name + " (" + _email  + ") grade: " + std::to_string(_grade) + " parents: " + parent_names;
     return line; 
 }

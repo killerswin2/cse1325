@@ -40,6 +40,6 @@ std::string Parent::full_info(){
             student_names +=   _students[i]->to_string() + ", "; 
         }
     }
-    line =  _name + " (" + _email  + ") " + "parents: " + student_names;
+    line =  _name + " (" + _email  + ") " + "students: " + student_names;
     return line; 
 }
