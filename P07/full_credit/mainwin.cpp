@@ -31,6 +31,21 @@ Mainwin::Mainwin() : display{new Gtk::Label}{
     new_school_menu_item->signal_activate().connect([this]{this->on_new_school_click();});
     file_sub_menu->append(*new_school_menu_item);
 
+    //FILE -> SAVE
+    Gtk::MenuItem *save_menu_item = Gtk::manage(new Gtk::MenuItem("Save"));
+    save_menu_item->signal_activate().connect([this]{this->on_save_click();});
+    file_sub_menu->append(*save_menu_item);
+
+    //FILE -> SAVE AS
+    Gtk::MenuItem *save_as_menu_item = Gtk::manage(new Gtk::MenuItem("Save As"));
+    save_menu_item->signal_activate().connect([this]{this->on_save_as_click();});
+    file_sub_menu->append(*save_as_menu_item);
+
+    //FILE -> OPEN
+    Gtk::MenuItem *open_menu_item = Gtk::manage(new Gtk::MenuItem("Open"));
+    open_menu_item->signal_activate().connect([this]{this->on_save_click();});
+    file_sub_menu->append(*open_menu_item);
+
     //FILE -> QUIT
     Gtk::MenuItem *quit_menu_item = Gtk::manage(new Gtk::MenuItem("Quit"));
     quit_menu_item->signal_activate().connect([this]{this->on_quit_click();});
@@ -62,6 +77,17 @@ Mainwin::Mainwin() : display{new Gtk::Label}{
     Gtk::MenuItem *students_to_parents = Gtk::manage(new Gtk::MenuItem("Student to Parent"));
     students_to_parents->signal_activate().connect([this] {this->on_student_parent_click();});
     relate_sub_menu->append(*students_to_parents);
+
+    //HELP
+    Gtk::MenuItem *help_menu = Gtk::manage(new Gtk::MenuItem("Help"));
+    menubar->append(*help_menu);
+    Gtk::Menu *help_sub_menu = Gtk::manage(new Gtk::Menu());
+    help_menu->set_submenu(*help_sub_menu);
+
+    //HELP -> ABOUT
+    Gtk::MenuItem *about_menu_item = Gtk::manage(new Gtk::MenuItem("About"));
+    about_menu_item->signal_activate().connect([this]{this->on_about_click();});
+    help_sub_menu->append(*about_menu_item);
 
     vbox->show_all();
 }
@@ -176,4 +202,18 @@ void Mainwin::on_student_parent_click(){
 }  
 void Mainwin::on_quit_click(){
     close();   
+}
+
+
+void Mainwin::on_save_click(){
+    std::cout << "On save click" << std::endl;
+}
+void Mainwin::on_save_as_click(){
+    std::cout << "On save as click" << std::endl;
+}
+void Mainwin::on_open_click(){
+    std::cout << "On open click" << std::endl;
+}
+void Mainwin::on_about_click(){
+    std::cout << "On about click" << std::endl;
 }
