@@ -40,3 +40,11 @@ std::string Student::full_info(){
     line =  _name + " (" + _email  + ") grade: " + std::to_string(_grade) + " parents: " + parent_names;
     return line; 
 }
+
+Student::Student(std::ifstream &ist): Person{ist}{
+    ist >>_grade;
+}
+
+void Student::save(std::ofstream &ost){
+    ost << _name << std::endl <<_email << std::endl << _grade <<std::endl;
+}

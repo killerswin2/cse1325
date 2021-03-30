@@ -43,3 +43,9 @@ std::string Parent::full_info(){
     line =  _name + " (" + _email  + ") " + "students: " + student_names;
     return line; 
 }
+
+Parent::Parent(std::ifstream& ist):Person{ist}{}
+
+void Parent::save(std::ofstream& ost){
+    Person::save(ost);
+}

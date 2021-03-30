@@ -11,6 +11,8 @@ class Parent: public Person{
         std::vector<Student*> _students;
     public:
         Parent(std::string name, std::string email);
+        Parent(std::ifstream& ist);
+        virtual void save(std::ofstream& ost);
         void add_student(Student& student);
         int students();
         Student& student(int index);

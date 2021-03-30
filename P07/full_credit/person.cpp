@@ -22,3 +22,13 @@ std::ostream& operator<<(std::ostream& ost, const Person person){
     ost << person.to_string();
     return ost;
 }
+
+Person::Person(std::ifstream& ist){
+    ist >> _name;
+    ist >> _email;
+
+}
+
+void Person::save(std::ofstream& ost){
+    ost << _name << std::endl << _email << std::endl;
+}
